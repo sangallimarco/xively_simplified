@@ -45,13 +45,16 @@ class XivelyRequests:
 
 #tests
 if __name__ == "__main__":
-	import random
+	import random, time
 	#create connector
-	x = XivelyRequests('PiDZeUIcrII4P6AZy1ccpUzrEsJoCrrHC5nYEyHp90575890','1938656644')
+	x = XivelyRequests('5PeeI8nVMVyOJJA6zCaC8XC74Q35r2TFCY9p3jQNM62sZbgF','1938656644')
 	#get data
-	print x.get()
-	#set data
-	x.push({'sensor':random.randint(1,100),'sensor2':random.randint(1,100)})
-	#get data
-	print x.get()
+	while 1:
+		#set data
+		x.push({'sensor':random.randint(1,100),'sensor2':random.randint(1,100)})
+		
+		#get data
+		print x.get()
+
+		time.sleep(2)
 
