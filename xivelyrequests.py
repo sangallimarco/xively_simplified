@@ -45,16 +45,21 @@ class XivelyRequests:
 
 #tests
 if __name__ == "__main__":
-	import random, time
+	import random, time, re
 	#create connector
 	x = XivelyRequests('5PeeI8nVMVyOJJA6zCaC8XC74Q35r2TFCY9p3jQNM62sZbgF','1938656644')
 	#get data
 	while 1:
 		#set data
-		x.push({'sensor':random.randint(1,100),'sensor2':random.randint(1,100)})
+		res = requests.get('http://checkip.dyndns.com/')
+		if res:
+			ip = '.'.join(re.findall('([\d]{1,3})', res.content))
+		else:
+			ip = '0.0.0.0'
+		x.push({'sensor':random.randint(1,100),'sensor2':random.randint(1,100),'ip':ip})
 		
 		#get data
 		print x.get()
 
-		time.sleep(2)
+		time.sleep(10)
 
